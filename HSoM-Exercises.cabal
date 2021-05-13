@@ -1,0 +1,71 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: d91f309d899ea3e6d74a524950525e6376465b995dc02f0c32adf8f48262a60b
+
+name:           HSoM-Exercises
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/sackyhack/HSoM-Exercises#readme>
+homepage:       https://github.com/sackyhack/HSoM-Exercises#readme
+bug-reports:    https://github.com/sackyhack/HSoM-Exercises/issues
+author:         Craig Ferguson
+maintainer:     sackyhack@tworing.ca
+copyright:      2021 Craig Ferguson
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/sackyhack/HSoM-Exercises
+
+library
+  exposed-modules:
+      Ch1
+      Ch2
+      Ch3
+      Ch5
+      Ch6
+      Ch7
+      Ch9
+      Lib
+  other-modules:
+      Paths_HSoM_Exercises
+  hs-source-dirs:
+      src
+  build-depends:
+      Euterpea
+    , HSoM
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
+executable HSoM-Exercises-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_HSoM_Exercises
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HSoM-Exercises
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
+test-suite HSoM-Exercises-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_HSoM_Exercises
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HSoM-Exercises
+    , base >=4.7 && <5
+  default-language: Haskell2010
