@@ -50,8 +50,8 @@ myInterpPhrase pm
         cDur = dt, cPch = k, cVol = v }
     (pa:pas) m =
         let pfd@(pf, dur) = myInterpPhrase pm c pas m
-            aDelay = cDur c / 20
             first = head pf
+            arpDurRatio = 32
         in case pa of 
             Art Pedal -> -- Extend duration of each event to the end of the phrase
                 let t0 = eTime (head pf)
@@ -59,17 +59,18 @@ myInterpPhrase pm
                 in (map upd pf, dur)
             Orn ArpeggioUp ->
                 let (arp, rest) = span (\e -> eTime e == eTime first && eInst e == eInst first) pf
-                    arp' = map (\(n, e@MEvent {eTime = t, eDur = d}) -> e {eTime = t + aDelay * n, eDur = d - aDelay * n}) $ zip [0..] (sort arp)
+                    arp' = map (\(n, e@MEvent {eTime = t, eDur = d}) ->
+                         e {eTime = t + dt * n / arpDurRatio, eDur = d - dt * n / arpDurRatio}) $ zip [0..] (sort arp)
                 in (merge arp' rest, dur)
             Orn ArpeggioDown -> 
                 let (arp, rest) = span (\e -> eTime e == eTime first && eInst e == eInst first) pf
-                    arp' = map (\(n, e@MEvent {eTime = t, eDur = d}) -> e {eTime = t + aDelay * n, eDur = d - aDelay * n}) $ zip [0..] (reverse (sort arp))
+                    arp' = map (\(n, e@MEvent {eTime = t, eDur = d}) ->
+                         e {eTime = t + dt * n / arpDurRatio, eDur = d - dt * n / arpDurRatio}) $ zip [0..] (reverse (sort arp))
                 in (merge arp' rest, dur)
             _ -> pfd
 
 pedalTest = playA myPMap scaleCon $ Modify (Custom "Player MyPlayer") $ Modify (Phrase [Art Pedal]) scale
 
-arpeggio = (c 4 qn :=: e 4 qn :=: g 4 qn) :+: d 4 qn :+: e 4 qn :+: f 4 qn :+: g 4 qn
-arpeggio2 = (g 4 qn :=: e 4 qn :=: c 4 qn) :+: d 4 qn :+: e 4 qn :+: f 4 qn :+: g 4 qn
+arpeggio = (c 4 qn :=: e 4 qn :=: g 4 qn :=: c 5 qn) :+: d 4 qn :+: e 4 qn :+: f 4 qn :+: g 4 qn
 arpUpTest = playA myPMap scaleCon $ Modify (Custom "Player MyPlayer") $ Modify (Phrase [Orn ArpeggioUp]) arpeggio
 arpDownTest = playA myPMap scaleCon $ Modify (Custom "Player MyPlayer") $ Modify (Phrase [Orn ArpeggioDown]) arpeggio
