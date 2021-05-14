@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d91f309d899ea3e6d74a524950525e6376465b995dc02f0c32adf8f48262a60b
+-- hash: 2a281d2c68d39d6ecb7cab0db60e2df25d6f3c1e47c0c48db2b345d5f79f5948
 
 name:           HSoM-Exercises
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       Ch1
+      Ch10
       Ch2
       Ch3
       Ch5
