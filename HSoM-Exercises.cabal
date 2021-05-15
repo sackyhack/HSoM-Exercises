@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2a281d2c68d39d6ecb7cab0db60e2df25d6f3c1e47c0c48db2b345d5f79f5948
+-- hash: 4e81198cd9ab7ed646efa1e87173ca8d59627bca1ba82e821d1026741bbe79a3
 
 name:           HSoM-Exercises
 version:        0.1.0.0
@@ -29,6 +29,7 @@ library
   exposed-modules:
       Ch1
       Ch10
+      Ch13
       Ch2
       Ch3
       Ch5
@@ -44,6 +45,7 @@ library
       Euterpea
     , HSoM
     , base >=4.7 && <5
+    , random
   default-language: Haskell2010
 
 executable HSoM-Exercises-exe
@@ -56,6 +58,7 @@ executable HSoM-Exercises-exe
   build-depends:
       HSoM-Exercises
     , base >=4.7 && <5
+    , random
   default-language: Haskell2010
 
 test-suite HSoM-Exercises-test
@@ -69,4 +72,5 @@ test-suite HSoM-Exercises-test
   build-depends:
       HSoM-Exercises
     , base >=4.7 && <5
+    , random
   default-language: Haskell2010
