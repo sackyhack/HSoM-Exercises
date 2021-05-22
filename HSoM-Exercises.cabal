@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a2187afbf9fd01c129d752c19dacfcce187077ca813da861f1badd1e60bfe2ec
+-- hash: 0a4e52fb9154de0d84194646349260cb5d0d9ebb858db35328d5ff5d6902c79e
 
 name:           HSoM-Exercises
 version:        0.1.0.0
@@ -32,6 +32,7 @@ library
       Ch13
       Ch19
       Ch2
+      Ch20
       Ch3
       Ch5
       Ch6
